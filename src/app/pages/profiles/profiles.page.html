@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border ion-padding-top" mode="md">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>PROFILES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list class="ion-padding-top">
+    <ion-item *ngFor="let user of [1,2,3,4,5,6,7,8]" (click)="userDetail()">
+      <div class="ion-padding">
+        <ion-avatar slot="start">
+          <img src="./avatar-finn.png">
+        </ion-avatar>
+      </div>
+      <ion-label>
+        <h2>Finn</h2>
+      </ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
