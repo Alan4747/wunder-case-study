@@ -1,8 +1,39 @@
+ion-title {
+  color: #b1b8c5;
+}
+
 ion-avatar {
   width: 100px;
   height: 100px;
 
   img {
     object-fit: contain;
+  }
+}
+
+hr {
+  background: #dbe0e5;
+}
+
+ion-label {
+  padding-left: 2rem;
+  p {
+    font-family: Gotham;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+  h3 {
+    font-family: Gotham;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #6374f3;
   }
 }
