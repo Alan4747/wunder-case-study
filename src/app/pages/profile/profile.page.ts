@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -6,25 +7,26 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  user = 'male';
-  age = 29;
-  array = [];
+  indicatorArr = [];
+  userInfo: any;
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.getAgeIndicatorPositions();
+    this.activatedRoute.queryParamMap.subscribe(param => {
+      this.userInfo = param.get('user');
+      this.userInfo = JSON.parse(this.userInfo);
+    });
+    this.ageIndicatorBottom(this.userInfo.dob.age);
   }
 
-  getAgeIndicatorPositions() {
-    const ageRoundedDown = this.age - (this.age % 4);
-    console.log(ageRoundedDown);
-    for (let i = 1; i < ageRoundedDown / 4; i++) {
-      this.array.push(`${(i * 400) / ageRoundedDown}%`);
+  ageIndicatorBottom(age: any) {
+    const roundingAge = age - (age % 4);
+    for (let i = 1; i < roundingAge / 4; i++) {
+      this.indicatorArr.push(`${(i * 400) / roundingAge}%`);
     }
-    console.log(this.array);
-    return this.array;
+    return this.indicatorArr;
   };
 
 }

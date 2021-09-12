@@ -10,11 +10,11 @@
 <ion-content>
   <ion-item lines="none" class="ion-padding-bottom">
     <ion-avatar>
-      <img src="https://avatars.githubusercontent.com/u/9548700?v=4">
+      <img src="{{userInfo.picture.large}}">
     </ion-avatar>
     <ion-label>
       <p>Name</p>
-      <h3>Erkin Alan</h3>
+      <h3>{{userInfo.name.first}} {{userInfo.name.last}}</h3>
     </ion-label>
   </ion-item>
   <div class="map">
@@ -24,7 +24,7 @@
     <div class="left">
       <ion-text>Gender</ion-text>
       <div class="icon">
-        <ion-icon [name]="user === 'male' ? 'male-outline' : 'female-outline' "></ion-icon>
+        <ion-icon [name]="userInfo.gender === 'male' ? 'male-outline' : 'female-outline' "></ion-icon>
       </div>
     </div>
 
@@ -32,10 +32,12 @@
       <div class="age-title">
         <ion-text>Age</ion-text>
       </div>
-      <ion-text class="age">34 yo</ion-text>
+      <ion-text class="age">{{userInfo.dob.age}} yo</ion-text>
       <div class="bar">
         <div class="bar-1"></div>
-        <div class="bar-2"></div>
+        <div *ngFor="let arr of indicatorArr">
+          <div class="bar-2" [ngStyle]="{'bottom': arr}"></div>
+        </div>
       </div>
 
     </div>

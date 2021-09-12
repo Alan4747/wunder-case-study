@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  urlSID:'https://wunder-provider.herokuapp.com/socket.io/?EIO=3&transport=polling&t=NlMO6J5',
-  urlResult: 'https://wunder-provider.herokuapp.com/socket.io/?EIO=3&transport=polling&t=NlMO6J5&sid=',
-  urlWSS: 'wss://wunder-provider.herokuapp.com/socket.io/?EIO=3&transport=websocket&',
+  url: 'https://wunder-provider.herokuapp.com/',
 };
 
 /*

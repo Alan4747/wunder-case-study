@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {UsersService} from '../../services/users.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Socket} from 'ngx-socket-io';
 
 @Component({
   selector: 'app-profiles',
@@ -8,15 +8,25 @@ import {UsersService} from '../../services/users.service';
   styleUrls: ['./profiles.page.scss'],
 })
 export class ProfilesPage implements OnInit {
+  data: any = [];
 
-  constructor(private router: Router, private  userService: UsersService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private socket: Socket) {
   }
 
   ngOnInit() {
+    this.getAllUsers();
   }
 
-  userDetail() {
-    this.router.navigateByUrl('/profile').then(res => {
+  getAllUsers() {
+    this.data = this.socket.ioSocket.receiveBuffer;
+  }
+
+  userDetail(userInfo: any) {
+    console.log(userInfo);
+    this.router.navigate(['/profile'], {
+      relativeTo: this.activatedRoute,
+      queryParams: {user: JSON.stringify(userInfo)}
+    }).then(res => {
       console.log(res);
     }).catch(err => {
       console.error(err);
