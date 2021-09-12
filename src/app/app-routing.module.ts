@@ -14,10 +14,6 @@ const routes: Routes = [
     path: '',
     redirectTo: 'profiles',
     pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   }
 
 ];
