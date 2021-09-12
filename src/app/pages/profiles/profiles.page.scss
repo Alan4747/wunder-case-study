@@ -1,3 +1,4 @@
+
 ion-content {
   flex: 1;
   width: 100%;
@@ -26,4 +27,10 @@ h2 {
   line-height: normal;
   letter-spacing: normal;
   color: #6374f3;
+}
+span{
+  ion-icon {
+    color: #afbbce;
+    font-size: 50px;
+  }
 }

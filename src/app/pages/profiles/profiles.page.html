@@ -1,5 +1,5 @@
-<ion-header class="ion-no-border ion-padding-top" mode="md">
-  <ion-toolbar>
+<ion-header class="ion-no-border" mode="md">
+  <ion-toolbar class="ion-padding-top">
     <ion-buttons slot="end">
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
@@ -9,7 +9,7 @@
 
 <ion-content fullscreen>
   <ion-list class="ion-padding-top">
-    <ion-item *ngFor="let user of data;" (click)="userDetail(user[1].results[0])">
+    <ion-item *ngFor="let user of users | slice : startPage:paginationLimit" (click)="userDetail(user[1].results[0])">
       <div class="ion-padding">
         <ion-avatar slot="start">
           <img src="{{user[1].results[0].picture.large}}">
@@ -20,5 +20,26 @@
       </ion-label>
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
+    <div class="ion-text-center ion-padding-top">
+      <span *ngIf="paginationLimit < users.length" (click)="showMoreUsers()">
+        <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+      </span>
+    </div>
+
+    <div *ngIf="users.length < 1">
+      <ion-item *ngFor="let ske of [1,2,3,4,5]" class="ion-padding-top">
+        <ion-avatar slot="start">
+          <ion-skeleton-text></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <p>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+        <p slot="end">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </p>
+      </ion-item>
+    </div>
   </ion-list>
 </ion-content>

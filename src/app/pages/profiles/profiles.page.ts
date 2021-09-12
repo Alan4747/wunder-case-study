@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Socket} from 'ngx-socket-io';
 
@@ -8,9 +8,14 @@ import {Socket} from 'ngx-socket-io';
   styleUrls: ['./profiles.page.scss'],
 })
 export class ProfilesPage implements OnInit {
-  data: any = [];
+  users: any = [];
+  startPage: any;
+  paginationLimit: any;
+
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private socket: Socket) {
+    this.startPage = 0;
+    this.paginationLimit = 5;
   }
 
   ngOnInit() {
@@ -18,7 +23,7 @@ export class ProfilesPage implements OnInit {
   }
 
   getAllUsers() {
-    this.data = this.socket.ioSocket.receiveBuffer;
+    this.users = this.socket.ioSocket.receiveBuffer;
   }
 
   userDetail(userInfo: any) {
@@ -33,4 +38,7 @@ export class ProfilesPage implements OnInit {
     });
   }
 
+  showMoreUsers() {
+    this.paginationLimit = Number(this.paginationLimit) + 5;
+  }
 }
