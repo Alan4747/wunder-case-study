@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import * as leaflet from 'leaflet';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import * as Leaflet from 'leaflet';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit, OnDestroy {
   map: any;
   @Input() coordinates: any;
 
@@ -14,18 +14,24 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    setTimeout(async () => {
+      await this.initMap();
+    }, 1000);
   }
 
-  ngAfterViewInit() {
-    this.initMap();
-
+  ngOnDestroy() {
+    this.map.remove();
   }
 
-  private initMap(): void {
-    this.map = leaflet.map('map',).setView([this.coordinates.latitude, this.coordinates.longitude], 17);
+  async initMap() {
+    this.map = await new Leaflet.Map('map', {
+      attributionControl: false,
+      dragging: true,
+    }).setView([this.coordinates.latitude, this.coordinates.longitude], 16);
     this.map.zoomControl.remove();
-    leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
-    leaflet.marker([this.coordinates.latitude, this.coordinates.longitude]).addTo(this.map);
+    Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+    Leaflet.marker([this.coordinates.latitude, this.coordinates.longitude]).addTo(this.map);
+
   }
 
 }
