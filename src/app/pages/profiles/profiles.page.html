@@ -20,6 +20,19 @@
       </ion-label>
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
+    <ion-item *ngIf="startPage < paginationLimit && users.length < paginationLimit">
+      <ion-avatar slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+      <p slot="end">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </p>
+    </ion-item>
     <div class="ion-text-center ion-padding-top">
       <span *ngIf="paginationLimit < users.length" (click)="showMoreUsers()">
         <ion-icon name="ellipsis-horizontal-outline"></ion-icon>

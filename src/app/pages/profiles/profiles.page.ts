@@ -27,7 +27,7 @@ export class ProfilesPage implements OnInit {
   }
 
   userDetail(userInfo: any) {
-    console.log(userInfo);
+
     this.router.navigate(['/profile'], {
       relativeTo: this.activatedRoute,
       queryParams: {user: JSON.stringify(userInfo)}

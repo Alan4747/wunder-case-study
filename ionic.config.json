@@ -1,5 +1,7 @@
 {
   "name": "wunder-case-study",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

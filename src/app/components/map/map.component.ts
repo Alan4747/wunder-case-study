@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import * as Leaflet from 'leaflet';
 
 @Component({
@@ -8,10 +8,10 @@ import * as Leaflet from 'leaflet';
 })
 export class MapComponent implements OnInit, OnDestroy {
   map: any;
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   @Input() coordinates: any;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     setTimeout(async () => {
@@ -27,11 +27,14 @@ export class MapComponent implements OnInit, OnDestroy {
     this.map = await new Leaflet.Map('map', {
       attributionControl: false,
       dragging: true,
-    }).setView([this.coordinates.latitude, this.coordinates.longitude], 16);
+    }).setView([this.coordinates.latitude, this.coordinates.longitude], 12);
     this.map.zoomControl.remove();
-    Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
-    Leaflet.marker([this.coordinates.latitude, this.coordinates.longitude]).addTo(this.map);
-
+    Leaflet.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    ).addTo(this.map);
+    Leaflet.marker([
+      this.coordinates.latitude,
+      this.coordinates.longitude,
+    ]).addTo(this.map);
   }
-
 }
